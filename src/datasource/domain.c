@@ -116,7 +116,7 @@ int snoopy_datasource_domain (char * const result, char const * const arg)
 
         /* Is line a comment - ignore everything after '#' character */
         if (NULL != (hashPtr = strchr(linePtr, '#'))) {
-            hashPtr = '\0';
+            *hashPtr = '\0';
         }
 
         /* Try to find "hostname." there */
