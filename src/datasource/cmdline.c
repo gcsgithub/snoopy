@@ -79,10 +79,11 @@ int snoopy_datasource_cmdline (char * const result, char const * const arg)
     /* Last space will be converted to \0 */
     cmdLineSizeRet = min(SNOOPY_SYSCONF_ARG_MAX, cmdLineSizeSum);
 
+    if ( cmdLineSizeRet > 0 ) {
     /* Initialize cmdLine */
     cmdLine    = malloc(cmdLineSizeRet);
+      if ( cmdLine != NULL ) {
     cmdLine[0] = '\0';
-
     for (i = n = 0 ; i<cmdLineArgCount ; i++) {
         /* Did adding space in previous iteration cause this? */
         if (n >= cmdLineSizeRet) {
@@ -109,5 +110,11 @@ int snoopy_datasource_cmdline (char * const result, char const * const arg)
     snprintf(result, SNOOPY_DATASOURCE_MESSAGE_MAX_SIZE, "%s", cmdLine);
 
     free(cmdLine);
-    return cmdLineSizeRet;
+      }
+      else {
+        fprintf(stderr, "malloc failed for cmline in snoopy_datasource_cmdline()\n");
+        cmdLineSizeRet = -1;
+      }
+    }
+    return(cmdLineSizeRet); // return -1 on error 
 }
