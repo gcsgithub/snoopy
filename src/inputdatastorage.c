@@ -38,7 +38,7 @@
  * Common definitions
  */
 #define   EMPTY_FILENAME      ""
-#define   EMPTY_STRINGARRAY   (char *[]){'\0'}
+#define   EMPTY_STRINGARRAY   (char *[]){NULL}
 
 
 
@@ -114,10 +114,8 @@ void snoopy_inputdatastorage_dtor ()
  * Return:
  *     void
  */
-void snoopy_inputdatastorage_setUninitialized
-(
-    snoopy_inputdatastorage_t *IDS
-) {
+void snoopy_inputdatastorage_setUninitialized( snoopy_inputdatastorage_t *IDS ) 
+{
     IDS->initialized = SNOOPY_FALSE;
 }
 
@@ -135,10 +133,9 @@ void snoopy_inputdatastorage_setUninitialized
  * Return:
  *     void
  */
-void snoopy_inputdatastorage_setDefaults
-(
-    snoopy_inputdatastorage_t *IDS
-) {
+
+void snoopy_inputdatastorage_setDefaults( snoopy_inputdatastorage_t *IDS )
+{
     IDS->initialized = SNOOPY_TRUE;
     IDS->filename    = EMPTY_FILENAME;
     IDS->argv        = EMPTY_STRINGARRAY;
@@ -159,9 +156,8 @@ void snoopy_inputdatastorage_setDefaults
  * Return:
  *     void
  */
-void snoopy_inputdatastorage_store_filename (
-    const char *filename
-) {
+void snoopy_inputdatastorage_store_filename( const char *filename )
+{
     /* Get IDS pointer */
     snoopy_inputdatastorage_t *IDS = snoopy_inputdatastorage_get();
 
@@ -183,9 +179,8 @@ void snoopy_inputdatastorage_store_filename (
  * Return:
  *     void
  */
-void snoopy_inputdatastorage_store_argv (
-    char *argv[]
-) {
+void snoopy_inputdatastorage_store_argv ( char *argv[] )
+{
     /* Get IDS pointer */
     snoopy_inputdatastorage_t *IDS = snoopy_inputdatastorage_get();
 
@@ -207,9 +202,8 @@ void snoopy_inputdatastorage_store_argv (
  * Return:
  *     void
  */
-void snoopy_inputdatastorage_store_envp (
-    char *envp[]
-) {
+void snoopy_inputdatastorage_store_envp( char *envp[] )
+{
     /* Get IDS pointer */
     snoopy_inputdatastorage_t *IDS = snoopy_inputdatastorage_get();
 
