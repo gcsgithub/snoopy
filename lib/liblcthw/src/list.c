@@ -1,5 +1,12 @@
 #include <list.h>
-#include <dbg.h>
+#ifdef __clang__
+#  pragma clang diagnostic push
+#  pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
+#  include <dbg.h>
+#  pragma clang diagnostic pop
+#else
+#  include <dbg.h>
+#endif
 
 List *List_create()
 {
