@@ -74,7 +74,9 @@ int snoopy_datasource_cmdline (char * const result, char const * const arg)
     cmdLineSizeSum = 0;
     for (i=0 ; i<cmdLineArgCount ; i++) {
         /* Argument length + space */
-        cmdLineSizeSum += strlen(snoopy_inputdatastorage->argv[i]) + 1;
+        if (snoopy_inputdatastorage->argv) {
+          cmdLineSizeSum += strlen(snoopy_inputdatastorage->argv[i]) + 1;
+        }
     }
     /* Last space will be converted to \0 */
     cmdLineSizeRet = min(SNOOPY_SYSCONF_ARG_MAX, cmdLineSizeSum);

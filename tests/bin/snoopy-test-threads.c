@@ -76,7 +76,7 @@ int    randomNumberInclusive (int idMin, int idMax);
 char            **runCmdAndArgv;
 pthread_t         tRepo[THREAD_COUNT_MAX];
 pthread_mutex_t   threadCountMutex = PTHREAD_MUTEX_INITIALIZER;
-int               threadCountCreated  = 0; // Created threads, as seen by each thread
+volatile int      threadCountCreated  = 0; // Created threads, as seen by each thread
 int               threadCountAliveNow = 0; // Number of threads currently alive
 int               threadCountAliveMax = 0; // Maximum number of threads alive at any one time
 
@@ -117,7 +117,7 @@ int main (int argc, char **argv)
     for (i=0 ; i<threadsToCreate ; i++) {
         tData_t *tArgs = malloc(sizeof *tArgs);
         tArgs->seqNr   = i;
-//        printf(" M: Starting thread #%d:\n", i+1);
+        printf(" M: Starting thread #%d:\n", i+1);
         retVal = pthread_create(&tRepo[i], NULL, &threadMain, tArgs);
     }
     printf("done.\n");
