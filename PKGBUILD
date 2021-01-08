@@ -19,7 +19,7 @@ backup=("etc/snoopy.ini")
 options=()
 install=
 changelog=
-branch="master"
+branch="fixformanjarobuild"
 source=(git+${url}#branch=${branch})
 noextract=()
 md5sums=("SKIP")
