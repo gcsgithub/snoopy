@@ -30,8 +30,8 @@ pkgver() {
         echo "${pkgver}"
 }
 
-prepare() {
-}
+#prepare() {
+#}
 
 build() {
         cd "${srcdir}/${pkgname}"
